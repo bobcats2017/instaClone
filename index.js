@@ -29,13 +29,20 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', (request, response) => {
-    response.render('login.ejs') ;
+    response.render('index.ejs') ;
 });
 
-app.get('/story', (request, response) => {
-    response.render('login.ejs') ;
+app.get('/userEdit', (request, response) => {
+    response.render('userEdit.ejs') ;
 });
 
+app.get('/userPage', (request, response) => {
+    response.render('userPage.ejs') ;
+});
+
+app.get('/userLogin', (request, response) => {
+    response.render('userLogin.ejs') ;
+});
 
 const server = app.listen(process.env.PORT || 8089, () => {
     console.log('started')
