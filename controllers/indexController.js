@@ -4,7 +4,6 @@ const currentDataObj = require('../db/index');
 
 
 module.exports.post = function(req, res) {
-
 req
  .checkBody('username', 'name is required')
  .notEmpty()
@@ -28,15 +27,34 @@ req
   }
 
 
+
 currentDataObj.newUser(input, (err) => {
+  console.log(err)
   if(err){
     console.log(err);
     res.send(err);
-  }else{
-    res.render('NO current errors')
   }
   res.redirect('/');
 })
+
+
+
+}
+
+
+
+module.exports.getUserByUserName = function(username, callback){
+  var query = {username: username};
+  User.findOne(query, callback);
+}
+module.exports.getUserById = function(id, callback){
+  User.findById(id, callback);
+}
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+
+
+
+
 
 
 

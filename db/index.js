@@ -37,4 +37,32 @@ const loginObj = [
 // });
 
 
+/*============"**OBJECT DATABASE YOU WILL BE PULLING FROM** LIZ"======================*/
+/*You can add and modify this object at any time, when you use this object, I am going to
+  modify the database accordingly because you are only in controller/views right now
+  If you need help grabbing the json obj's hit me up */
+
+module.exports.get = function(req, res){
+
+  var posts = {
+    'title': 'title',
+    'image': 'image',
+    'body': 'body',
+    'comments': [
+      {
+        'username': 'username',
+        'title': 'title',
+        'body': 'body',
+
+      },
+      {
+        'username': 'Layne Staley',
+        'title': 'my chicken is overdone',
+        'body': 'Ur Momma'
+      }
+    ]
+  }
+callback(null, posts);
+}
+
 module.exports.newUser = newUser;
