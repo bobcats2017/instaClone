@@ -1,8 +1,9 @@
 const currentDataObj = require('../db/index');
+const bcrypt = require('bcryptjs');
 
 
-
-
+/*=============POST FOR INDEX PAGE===============
+=======================================================*/
 module.exports.post = function(req, res) {
 req
  .checkBody('username', 'name is required')
@@ -40,22 +41,36 @@ currentDataObj.newUser(input, (err) => {
 
 
 }
-
+/*================GET USER BY USERNAME====Ubiq======
+====================================================*/
 
 
 module.exports.getUserByUserName = function(username, callback){
   var query = {username: username};
   User.findOne(query, callback);
 }
+/*================GET USER BY ID====Ubiq======
+====================================================*/
+
 module.exports.getUserById = function(id, callback){
   User.findById(id, callback);
 }
-module.exports.comparePassword = function(candidatePassword, hash, callback){
 
+/*================GET USER BY ID==========
+====================================================*/
 
+module.exports.contLoginUser = (req, res) => {
+  req
+   .checkBody('username', 'name is required')
+   .notEmpty()
 
+   req
+   .checkBody('password', 'password is required')
+   .notEmpty();
 
+   req.sanitizeBody('username').escape();
+   req.sanitizeBody('password').escape();
 
-
-
+  loginUser(req);
+  res.redirect('/login');
 }
