@@ -1,35 +1,42 @@
+
 const currentDataObj = require('../db/index');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const session = require('express-session');
-const express_validator = require('express-validator')
+const LocalStrategy = require('passport-local').Strategy;
+
+
+
+
+
+
 /*=============POST FOR INDEX PAGE===============
 =======================================================*/
 
- var userTestObj = {
-  'username': 'daring',
-  'password': 'tofinderror',
-  'secondPassword': 'tofinderror',
-}
+//  var userTestObj = {
+//   'username': 'daring',
+//   'password': 'tofinderror',
+//   'secondPassword': 'tofinderror',
+// }
 
 
 module.exports.post = (req, res) => {
-    //
-    // req
-    //     .checkBody('username', 'name is required')
-    //     .notEmpty()
-    //
-    // req
-    //     .checkBody('password', 'password is required')
-    //     .notEmpty();
-    // req
-    //     .checkBody('secondPassword', 'confirm password')
-    //     .notEmpty()
-        // .equals(req.body.password);
+console.log(req);
+    req
+        .checkBody('username', 'name is required')
+        .notEmpty()
 
-    // req.sanitizeBody('username').escape();
-    // req.sanitizeBody('password').escape();
-    // req.sanitizeBody('secondPassword').escape();
+    req
+        .checkBody('password', 'password is required')
+        .notEmpty();
+    req
+        .checkBody('secondPassword', 'confirm password')
+        .notEmpty()
+        .equals(req.body.password);
+
+    req.sanitizeBody('username').escape();
+    req.sanitizeBody('password').escape();
+    req.sanitizeBody('secondPassword').escape();
 
     const input = {
         username: req.body.username,
@@ -37,11 +44,11 @@ module.exports.post = (req, res) => {
         secondPassword: req.body.secondPassword,
     }
 
-    console.log(input);
-    if(err){
-      res.send(err);
-      console.log(err);
-    }
+    // console.log(input);
+    // if(err){
+    //   res.send(err);
+    //   console.log(err);
+    // }
 
 
     currentDataObj.newUser(input, (err) => {
@@ -63,12 +70,18 @@ module.exports.post = (req, res) => {
 
 
 
-module.exports.post(userTestObj);
+// module.exports.post(userTestObj);
 /*================LOGIN USER==========
 ====================================================*/
 
-module.exports.contLoginUser = (req, res, hash) => {
 
+
+
+
+
+
+
+module.exports.contLoginUser = (req, res, hash) => {
 
     req
         .checkBody('username', 'name is required')
@@ -84,7 +97,8 @@ module.exports.contLoginUser = (req, res, hash) => {
     const password = req.body.password;
     const username = req.body.username;
 
-
+console.log(password);
+console.log(username);
 /*=============================================
 ========== NEWLY ADDED=========================
 ===============================================*/
@@ -99,7 +113,8 @@ module.exports.contLoginUser = (req, res, hash) => {
           // User not found
           if (!user) {
             return done(null, false)
-          }
+           }
+
 
           // Always use hashed passwords and fixed time comparison
           bcrypt.compare(password, user.passwordHash, (err, isValid) => { //user could be undefined as well as passwordHash
@@ -114,5 +129,5 @@ module.exports.contLoginUser = (req, res, hash) => {
         })
       }
     ))
-       res.redirect('/login');
+       res.redirect('/');
 }
