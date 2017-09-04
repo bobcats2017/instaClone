@@ -1,6 +1,8 @@
 require('dotenv').config()
 const pg = require('pg');
 
+
+
 const pgObj = new pg.Pool({
   user: 'dan',
   host: '127.0.0.1',
@@ -12,14 +14,15 @@ const pgObj = new pg.Pool({
 /*======*****PG OBJECTS*****===================
 =====================================================*/
 const addUser = 'INSERT INTO users (username, password, secondPassword) VALUES ($1, $2, $3)';
+const userName = 'SELECT username FROM users WHERE username=$1';
+const userId = 'SELECT id FROM users WHERE id=$1'
 
 
 
 
 
 
-
-/*======*****ADDUSER*****===================
+/*======*****ADD USER*****===================
 =====================================================*/
 
  const newUser = (data, callback) => {
@@ -38,84 +41,30 @@ const loginObj = [
 
 }
 
-/*======*****LOGIN USER*****===================
-=====================================================*/
+/*================GET USER BY USERNAME====Ubiq======
+====================================================*/
 
-const loginUser = (data, callback) => {
+const getUserByUserName = (data, callback) => {
 
-const loginObj = data.password;
+const inputUsername = data.username;
 
-	bcrypt.compare(loginObj, hash, function(err, isMatch) {
-    	if(err){
-        console.log('error hit at compare')
-      }
-    	callback(null, isMatch);
-	});
-/*to work I might have ot palce one inside another*/
-
-
-
-bcrypt.genSalt(10, function(err, salt) { // not sure what 10 is referencing FRAGO
-    bcrypt.hash(loginObj, salt, function(err, hash) {
-        if(err){
-          console.log(err);
-        }
-        console.log(data.password);
-    });
-});
-
-
+  pgObj.query(userName, inputUsername, callback, (err, res) => {
+      callback(err, res);
+    })
 }
+/*================GET USER BY ID====Ubiq======
+====================================================*/
 
+const getUserById = (data, callback) => {
+  const inputUserId = data.id; //could be null
+
+    pgObj.query(userId, inputUserId , callback, (err, res) => {
+        callback(err, res);
+      })
+}
 /*======*****EXPORTS*****===================
 =====================================================*/
 
-
-
-module.exports.loginUser = loginUser;
 module.exports.newUser = newUser;
-
-
-
-
-
-
-
-
-
-
-
-// newUser({
-//   username: 'da',
-//   password: 'daniel',
-//   secondPassword: 'danielWinsidjoaf',
-// });
-
-
-/*============"**OBJECT DATABASE YOU WILL BE PULLING FROM** LIZ"======================*/
-/*You can add and modify this object at any time, when you use this object, I am going to
-  modify the database accordingly because you are only in controller/views right now
-  If you need help grabbing the json obj's hit me up */
-
-// module.exports.get = function(req, res){
-
-//   var posts = {
-//     'title': 'title',
-//     'image': 'image',
-//     'body': 'body',
-//     'comments': [
-//       {
-//         'username': 'username',
-//         'title': 'title',
-//         'body': 'body',
-//
-//       },
-//       {
-//         'username': 'Layne Staley',
-//         'title': 'my chicken is overdone',
-//         'body': 'Ur Momma'
-//       }
-//     ]
-//   }
-// callback(null, posts);
-// }
+module.exports.getUserById = getUserById;
+module.exports.getUserByUserName = getUserByUserName;

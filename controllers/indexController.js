@@ -1,76 +1,118 @@
 const currentDataObj = require('../db/index');
 const bcrypt = require('bcryptjs');
-
-
+const passport = require('passport');
+const session = require('express-session');
+const express_validator = require('express-validator')
 /*=============POST FOR INDEX PAGE===============
 =======================================================*/
-module.exports.post = function(req, res) {
-req
- .checkBody('username', 'name is required')
- .notEmpty()
 
- req
- .checkBody('password', 'password is required')
- .notEmpty();
- req
- .checkBody('secondPassword', 'confirm password')
- .notEmpty()
- .equals(req.body.password);
-
- req.sanitizeBody('username').escape();
- req.sanitizeBody('password').escape();
- req.sanitizeBody('secondPassword').escape();
-
- const input = {
-    username: req.body.username,
-    password: req.body.password,
-    secondPassword: req.body.secondPassword,
-  }
+ var userTestObj = {
+  'username': 'daring',
+  'password': 'tofinderror',
+  'secondPassword': 'tofinderror',
+}
 
 
+module.exports.post = (req, res) => {
+    //
+    // req
+    //     .checkBody('username', 'name is required')
+    //     .notEmpty()
+    //
+    // req
+    //     .checkBody('password', 'password is required')
+    //     .notEmpty();
+    // req
+    //     .checkBody('secondPassword', 'confirm password')
+    //     .notEmpty()
+        // .equals(req.body.password);
 
-currentDataObj.newUser(input, (err) => {
-  console.log(err)
-  if(err){
-    console.log(err);
-    res.send(err);
-  }
-  res.redirect('/');
-})
+    // req.sanitizeBody('username').escape();
+    // req.sanitizeBody('password').escape();
+    // req.sanitizeBody('secondPassword').escape();
+
+    const input = {
+        username: req.body.username,
+        password: req.body.password,
+        secondPassword: req.body.secondPassword,
+    }
+
+    console.log(input);
+    if(err){
+      res.send(err);
+      console.log(err);
+    }
+
+
+    currentDataObj.newUser(input, (err) => {
+        console.log(err)
+        res.send(err);
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        console.log('I have hit line 49');
+        console.log(err)
+        res.redirect('/login');
+    })
 
 
 
 }
-/*================GET USER BY USERNAME====Ubiq======
+
+
+
+
+module.exports.post(userTestObj);
+/*================LOGIN USER==========
 ====================================================*/
 
+module.exports.contLoginUser = (req, res, hash) => {
 
-module.exports.getUserByUserName = function(username, callback){
-  var query = {username: username};
-  User.findOne(query, callback);
-}
-/*================GET USER BY ID====Ubiq======
-====================================================*/
 
-module.exports.getUserById = function(id, callback){
-  User.findById(id, callback);
-}
+    req
+        .checkBody('username', 'name is required')
+        .notEmpty()
 
-/*================GET USER BY ID==========
-====================================================*/
+    req
+        .checkBody('password', 'password is required')
+        .notEmpty();
 
-module.exports.contLoginUser = (req, res) => {
-  req
-   .checkBody('username', 'name is required')
-   .notEmpty()
+    req.sanitizeBody('username').escape();
+    req.sanitizeBody('password').escape();
 
-   req
-   .checkBody('password', 'password is required')
-   .notEmpty();
+    const password = req.body.password;
+    const username = req.body.username;
 
-   req.sanitizeBody('username').escape();
-   req.sanitizeBody('password').escape();
 
-  loginUser(req);
-  res.redirect('/login');
+/*=============================================
+========== NEWLY ADDED=========================
+===============================================*/
+
+    passport.use(new LocalStrategy(
+     (username, password, done) => {
+        getUserByUserName(username, (err, user) => {
+          if (err) {
+            return done(err)
+          }
+
+          // User not found
+          if (!user) {
+            return done(null, false)
+          }
+
+          // Always use hashed passwords and fixed time comparison
+          bcrypt.compare(password, user.passwordHash, (err, isValid) => { //user could be undefined as well as passwordHash
+            if (err) {
+              return done(err)
+            }
+            if (!isValid) {
+              return done(null, false)
+            }
+            return done(null, user)
+          })
+        })
+      }
+    ))
+       res.redirect('/login');
 }

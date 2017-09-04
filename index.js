@@ -36,6 +36,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+
+
+
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
@@ -43,22 +46,22 @@ app.use(session({
 
 }));
 
-app.use(expressValidator({ //taken from express-validator github
-  errorFormatter: function(param,msg,value){
-    var namespace = param.split('.'),
-     root = namespace.shift(),
-     formParam = root;
-
-     while(namespace.length){
-       formParam += '[' + namespace.shift() + ']';
-     }
-     return {
-       param: formParam,
-       msg: msg,
-       value: value
-     }
-  }
-}));
+// app.use(expressValidator({ //taken from express-validator github
+//   errorFormatter: function(param,msg,value){
+//     var namespace = param.split('.'),
+//      root = namespace.shift(),
+//      formParam = root;
+//
+//      while(namespace.length){
+//        formParam += '[' + namespace.shift() + ']';
+//      }
+//      return {
+//        param: formParam,
+//        msg: msg,
+//        value: value
+//      }
+//   }
+// }));
 
 /*============ROUTES================*/
 
@@ -67,16 +70,11 @@ app.use(expressValidator({ //taken from express-validator github
 app.get('/', (req, res) => {
   res.render('index');
 })
+app.get('/login', (req, res) => {
+  res.render('login');
+})
 
-app.post('/', indexController.post);
-
-app.get('/userEdit', (request, response) => {
-    response.render('userEdit.ejs') ;
-});
-
-app.get('/userPage', (request, response) => {
-    response.render('userPage.ejs') ;
-});
+app.post('/login', indexController.post);
 
 
 
