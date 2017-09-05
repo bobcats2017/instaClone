@@ -63,11 +63,24 @@ const getUserById = (data, callback) => {
 }
 
 
-/*================ADD PICTURE TO HOMESTREAM====Ubiq======
+/*================ADD PICTURE TO Database====Ubiq======
 ====================================================*/
 
+const attachPicture = (data, callback) => {
 
+   var postImageObj = [
+      data.username,
+      data.description,
+      data.hashtag,
+      data.image
+  ] //Query values must be an array
 
+console.log(postImageObj);
+  pgObj.query(addPicture,postImageObj, callback, (err, res) => {
+
+      callback(err, res);
+    })
+}
 
 
 
@@ -78,3 +91,4 @@ const getUserById = (data, callback) => {
 module.exports.newUser = newUser;
 module.exports.getUserById = getUserById;
 module.exports.getUserByUserName = getUserByUserName;
+module.exports.attachPicture = attachPicture;

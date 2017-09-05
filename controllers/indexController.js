@@ -1,4 +1,3 @@
-
 const currentDataObj = require('../db/index');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
@@ -21,7 +20,7 @@ const multer = require('multer');
 
 
 module.exports.post = (req, res) => {
-console.log(req);
+
     req
         .checkBody('username', 'name is required')
         .notEmpty()
@@ -70,13 +69,13 @@ console.log(req);
 /*================Passport Middleware==========
 ====================================================*/
 
-module.exports.authenticationMiddleware = (req, res, next) =>  {
+module.exports.authenticationMiddleware = (req, res, next) => {
 
     if (req.isAuthenticated()) {
-      return next()
+        return next()
     }
     res.redirect('/')
-  }
+}
 
 
 
@@ -101,37 +100,37 @@ module.exports.contLoginUser = (req, res, hash) => {
     const username = req.body.username;
 
 
-/*=============================================
-========== NEWLY ADDED=========================
-===============================================*/
+    /*=============================================
+    ========== NEWLY ADDED=========================
+    ===============================================*/
 
     passport.use(new LocalStrategy(
-     (username, password, done) => {
-        getUserByUserName(username, (err, user) => {
-          if (err) {
-            return done(err)
-          }
+        (username, password, done) => {
+            getUserByUserName(username, (err, user) => {
+                if (err) {
+                    return done(err)
+                }
 
-          // User not found
-          if (!user) {
-            return done(null, false)
-           }
+                // User not found
+                if (!user) {
+                    return done(null, false)
+                }
 
 
-          // Always use hashed passwords and fixed time comparison
-          bcrypt.compare(password, user.passwordHash, (err, isValid) => { //user could be undefined as well as passwordHash
-            if (err) {
-              return done(err)
-            }
-            if (!isValid) {
-              return done(null, false)
-            }
-            return done(null, user)
-          })
-        })
-      }
+                // Always use hashed passwords and fixed time comparison
+                bcrypt.compare(password, user.passwordHash, (err, isValid) => { //user could be undefined as well as passwordHash
+                    if (err) {
+                        return done(err)
+                    }
+                    if (!isValid) {
+                        return done(null, false)
+                    }
+                    return done(null, user)
+                })
+            })
+        }
     ))
-       res.redirect('/');
+    res.redirect('/');
 }
 
 
@@ -139,49 +138,61 @@ module.exports.contLoginUser = (req, res, hash) => {
 ====================================================*/
 
 
-module.exports.uploadImagesMiddleware = (req, res) => {
 
-  app.post('/homeStream', function (req, res) {
-    upload(req, res, function (err) {
-      if (err) {
-
-        return console.log(err);
-      }
-      res.json({
-        success: true,
-        message: 'Image Uploaded!!!'
-      })
-  console.log('success!')
-    })
-  })
-
-}
+// module.exports.uploadImagesMiddleware = (req, res) => {
+//
+//     //app.post('/homeStream', function(req, res) {
+//     upload(req, res, function(err) {
+//         if (err) {
+//
+//             return console.log(err);
+//         }
+//         res.json({
+//             success: true,
+//             message: 'Image Uploaded!!!'
+//         })
+//         console.log('success!')
+//     })
+//
+//
+// }
 
 
 /*================POST IMAGES to homeStream==========
 ====================================================*/
 module.exports.postImages = (req, res) => {
 
-  req
-      .checkBody('username', 'name is required')
-      .notEmpty()
+    req
+        .checkBody('username', 'name is required')
+        .notEmpty()
 
-  req
-      .checkBody('description', 'password is required')
-      .notEmpty();
-  req
-      .checkBody('hashtag', 'hashtag not required')
+    req
+        .checkBody('description', 'password is required')
+        .notEmpty();
+    req
+        .checkBody('hashtag', 'hashtag not required')
 
-      req.sanitizeBody('username').escape();
-      req.sanitizeBody('description').escape();
-      req.sanitizeBody('hashtag').escape();
+    req.sanitizeBody('username').escape();
+    req.sanitizeBody('description').escape();
+    req.sanitizeBody('hashtag').escape();
 
+    const input = {
+        username: req.body.username,
+        description: req.body.description,
+        hashtag: req.body.hashtag,
+        image: req.file.path
+    }
 
-      const username = req.body.username;
-      const password = req.body.description;
-      const hashtag = req.body.hashtag;
+    currentDataObj.attachPicture(input, (err) => {
 
-      
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+
+        res.redirect('/homeStream');
+    })
+
 
 
 
