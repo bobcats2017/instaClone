@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
-
+const multer = require('multer');
 
 
 
@@ -67,19 +67,22 @@ console.log(req);
 
 }
 
+/*================Passport Middleware==========
+====================================================*/
+
+module.exports.authenticationMiddleware = (req, res, next) =>  {
+
+    if (req.isAuthenticated()) {
+      return next()
+    }
+    res.redirect('/')
+  }
 
 
 
 // module.exports.post(userTestObj);
 /*================LOGIN USER==========
 ====================================================*/
-
-
-
-
-
-
-
 
 module.exports.contLoginUser = (req, res, hash) => {
 
@@ -97,8 +100,7 @@ module.exports.contLoginUser = (req, res, hash) => {
     const password = req.body.password;
     const username = req.body.username;
 
-console.log(password);
-console.log(username);
+
 /*=============================================
 ========== NEWLY ADDED=========================
 ===============================================*/
@@ -130,4 +132,58 @@ console.log(username);
       }
     ))
        res.redirect('/');
+}
+
+
+/*================uploadImages/ multer==========
+====================================================*/
+
+
+module.exports.uploadImagesMiddleware = (req, res) => {
+
+  app.post('/homeStream', function (req, res) {
+    upload(req, res, function (err) {
+      if (err) {
+
+        return console.log(err);
+      }
+      res.json({
+        success: true,
+        message: 'Image Uploaded!!!'
+      })
+  console.log('success!')
+    })
+  })
+
+}
+
+
+/*================POST IMAGES to homeStream==========
+====================================================*/
+module.exports.postImages = (req, res) => {
+
+  req
+      .checkBody('username', 'name is required')
+      .notEmpty()
+
+  req
+      .checkBody('description', 'password is required')
+      .notEmpty();
+  req
+      .checkBody('hashtag', 'hashtag not required')
+
+      req.sanitizeBody('username').escape();
+      req.sanitizeBody('description').escape();
+      req.sanitizeBody('hashtag').escape();
+
+
+      const username = req.body.username;
+      const password = req.body.description;
+      const hashtag = req.body.hashtag;
+
+      
+
+
+
+
 }

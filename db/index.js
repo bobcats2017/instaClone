@@ -16,7 +16,7 @@ const pgObj = new pg.Pool({
 const addUser = 'INSERT INTO users (username, password, secondPassword) VALUES ($1, $2, $3)';
 const userName = "SELECT * FROM users WHERE username=$1"
 const userId = 'SELECT id FROM users WHERE id=$1'
-
+const addPicture = 'INSERT INTO posts (username, description, hashtag, images) VALUES ($1, $2, $3, $4)';
 /*======*****ADD USER*****===================
 =====================================================*/
 
@@ -61,6 +61,17 @@ const getUserById = (data, callback) => {
         callback(err, res);
       })
 }
+
+
+/*================ADD PICTURE TO HOMESTREAM====Ubiq======
+====================================================*/
+
+
+
+
+
+
+
 /*======*****EXPORTS*****===================
 =====================================================*/
 

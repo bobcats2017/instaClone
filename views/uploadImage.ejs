@@ -21,19 +21,28 @@
         </ul>
       </nav>
     </div>
- <h2 class="page-header">Log In</h2>
- <form method="POST" action="/login">
-   <div class="form-group">
-     <label>Username</label>
-     <input type="text" class="form-control" placeholder="Username" name="username">
-   </div>
-   <div class="form-group">
-     <label>Password</label>
-     <input type="password" class="form-control" placeholder="Password" name="password">
-   </div>
-   <button type="submit" class="btn btn-default">Submit</button>
- </form>
 
- <footer class="footer">
-   <p>&copy; Go BobCats 2017</p>
- </footer>
+<h2 class="page-header">Upload Image</h2>
+<form method="POST" action="/login">
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" placeholder="Username" name="username">
+  </div>
+  <div class="form-group">
+    <label>HashTag</label>
+    <input type="text" class="form-control" placeholder="Hashtag" name="hashtag">
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input type="text" class="form-control" placeholder="Describe it mate" name="description">
+  </div>
+  <div class="form-group">
+    <label>Image</label>
+    <input type="file" class="form-control" name="image">
+  </div>
+</form>
+<button type="submit" class="btn btn-default">Submit</button>
+
+<footer class="footer">
+  <p>&copy; Go BobCats 2017</p>
+</footer>
