@@ -134,6 +134,7 @@ module.exports.deletePost = (req, res) => {
   const input = {
       username: req.body.username,
       hashtag: req.body.hashtag,
+      description: req.body.description,
   }
 
   currentDataObj.deletePicture(input, (err) => {

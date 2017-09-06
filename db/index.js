@@ -17,7 +17,8 @@ const addUser = 'INSERT INTO users (username, password, secondPassword) VALUES (
 const userName = "SELECT * FROM users WHERE username=$1"
 const userId = 'SELECT id FROM users WHERE id=$1'
 const addPicture = 'INSERT INTO posts (username, description, hashtag, images) VALUES ($1, $2, $3, $4)';
-const removePicture = 'DELETE FROM posts WHERE username=$1 AND hashtag=$2';
+const removePicture = 'DELETE FROM posts WHERE username=$1 AND hashtag=$2 AND description=$3';
+const changePicture = 'ALTER TABLE posts WHERE '
 /*======*****ADD USER*****===================
 =====================================================*/
 
@@ -91,6 +92,7 @@ const deletePicture = (data, callback) => {
    var userInfo = [
       data.username,
       data.hashtag,
+      data.description,
   ] //Query values must be an array
 
 console.log(userInfo);
@@ -134,3 +136,4 @@ module.exports.getUserById = getUserById;
 module.exports.getUserByUserName = getUserByUserName;
 module.exports.attachPicture = attachPicture;
 module.exports.deletePicture = deletePicture;
+module.exports.editPicture = editPicture;
