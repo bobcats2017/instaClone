@@ -4,7 +4,7 @@ const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 const multer = require('multer');
-
+const path = require('path');
 
 
 
@@ -43,22 +43,15 @@ module.exports.post = (req, res) => {
         secondPassword: req.body.secondPassword,
     }
 
-    // console.log(input);
-    // if(err){
-    //   res.send(err);
-    //   console.log(err);
-    // }
+
 
 
     currentDataObj.newUser(input, (err) => {
-        console.log(err)
-        res.send(err);
+
         if (err) {
             console.log(err);
             res.send(err);
         }
-        console.log('I have hit line 49');
-        console.log(err)
         res.redirect('/login');
     })
 
@@ -136,26 +129,29 @@ module.exports.contLoginUser = (req, res, hash) => {
 
 /*================uploadImages/ multer==========
 ====================================================*/
+module.exports.deletePost = (req, res) => {
+
+  const input = {
+      username: req.body.username,
+      hashtag: req.body.hashtag,
+  }
+
+  currentDataObj.deletePicture(input, (err) => {
+
+      if (err) {
+          console.log(err);
+          res.send(err);
+      }
+
+      res.redirect('/');
+  })
 
 
 
-// module.exports.uploadImagesMiddleware = (req, res) => {
-//
-//     //app.post('/homeStream', function(req, res) {
-//     upload(req, res, function(err) {
-//         if (err) {
-//
-//             return console.log(err);
-//         }
-//         res.json({
-//             success: true,
-//             message: 'Image Uploaded!!!'
-//         })
-//         console.log('success!')
-//     })
-//
-//
-// }
+
+}
+
+
 
 
 /*================POST IMAGES to homeStream==========
@@ -172,15 +168,20 @@ module.exports.postImages = (req, res) => {
     req
         .checkBody('hashtag', 'hashtag not required')
 
+
+
     req.sanitizeBody('username').escape();
     req.sanitizeBody('description').escape();
     req.sanitizeBody('hashtag').escape();
+    //req.sanitizeBody('title').escape();
+
 
     const input = {
         username: req.body.username,
         description: req.body.description,
         hashtag: req.body.hashtag,
-        image: req.file.path
+        image: req.body.image,
+        //title: req.body.title
     }
 
     currentDataObj.attachPicture(input, (err) => {

@@ -11,7 +11,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
-//the below code might cause errors due to order
 const indexController = require('./controllers/indexController');
 const flash = require('connect-flash');
 const multer = require('multer');
@@ -44,17 +43,10 @@ app.use(passport.session());
 app.use(flash());
 
 
-/*============MULTER STORAGE========================================
-=====================================================================*/
-
-
-
-
-
-
 /*============ROUTES================================
 =====================================================*/
 
+/*===indexLogin route===*/
 app.get('/', (req, res) => {
     res.render('index');
 })
@@ -62,10 +54,13 @@ app.get('/login', (req, res) => { //maybe in post
     res.render('login');
 })
 
+/*===upload image route===*/
+
 app.get('/uploadImage', (req, res) => {
     res.render('uploadImage');
 })
 
+/*===Post routes===*/
 
 app.post('/', indexController.post);
 
@@ -77,8 +72,7 @@ app.get('/logout', function(req, res) {
     });
 });
 
-/*===========Getting multer to work==============
-=================================================*/
+
 app.get('/homeStream', (req, res) => {
     res.render('homeStream');
 })
@@ -87,11 +81,13 @@ var upload = multer({ dest: './file_uploader'  });
 
 
 
-app.post('/homeStream', upload.any(), function(req, res, next){
-res.send(req.files);
+app.post('/homeStream', upload.any(), indexController.postImages)
+
+app.get('/deleteImage', (req, res) => {
+    res.render('deleteImage');
 })
 
-
+app.post('/deleteImage', indexController.deletePost);
 
 
 app.listen(3000, () => {

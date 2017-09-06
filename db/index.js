@@ -17,6 +17,7 @@ const addUser = 'INSERT INTO users (username, password, secondPassword) VALUES (
 const userName = "SELECT * FROM users WHERE username=$1"
 const userId = 'SELECT id FROM users WHERE id=$1'
 const addPicture = 'INSERT INTO posts (username, description, hashtag, images) VALUES ($1, $2, $3, $4)';
+const removePicture = 'DELETE FROM posts WHERE username=$1 AND hashtag=$2';
 /*======*****ADD USER*****===================
 =====================================================*/
 
@@ -72,15 +73,55 @@ const attachPicture = (data, callback) => {
       data.username,
       data.description,
       data.hashtag,
-      data.image
+      data.image,
+      //data.title,
   ] //Query values must be an array
 
-console.log(postImageObj);
   pgObj.query(addPicture,postImageObj, callback, (err, res) => {
 
       callback(err, res);
     })
 }
+
+/*================DELETE PICTURE BY USERNAME AND HASHTAG====Ubiq======
+=====================================================================*/
+
+const deletePicture = (data, callback) => {
+
+   var userInfo = [
+      data.username,
+      data.hashtag,
+  ] //Query values must be an array
+
+console.log(userInfo);
+  pgObj.query(removePicture,userInfo, callback, (err, res) => {
+
+      callback(err, res);
+    })
+}
+
+/*================EDIT USER BY USERNAME AND HASHTAG ====Ubiq======
+=====================================================================*/
+const editPicture = (data, callback) => {
+
+   var userInfo = [
+      data.username,
+      data.hashtag,
+  ] //Query values must be an array
+
+console.log(userInfo);
+  pgObj.query(removePicture,userInfo, callback, (err, res) => {
+
+      callback(err, res);
+    })
+}
+
+
+
+
+
+
+
 
 
 
@@ -92,3 +133,4 @@ module.exports.newUser = newUser;
 module.exports.getUserById = getUserById;
 module.exports.getUserByUserName = getUserByUserName;
 module.exports.attachPicture = attachPicture;
+module.exports.deletePicture = deletePicture;

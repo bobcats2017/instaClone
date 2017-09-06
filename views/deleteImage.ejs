@@ -1,0 +1,49 @@
+<link rel="stylesheets" href="public/css/login.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
+
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <!-- NAV BAR  -->
+            <ul class="nav nav-pills float-right">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                    <!-- might need to fix routing -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Sign In</a>
+                    <!--  need to fix routing -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Sign Out</a>
+                    <!--  need to fix routing -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/homeStream">Home Stream</a>
+                    <!--  need to fix routing -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Upload Image</a>
+                    <!--  need to fix routing -->
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Seperation between nav and form -->
+
+    <h2 class="page-header">Delete Post</h2>
+    <form method="POST" action="/deleteImage">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" placeholder="Username" name="username">
+        </div>
+        <div class="form-group">
+            <label>Hashtag of Post</label>
+            <input type="text" class="form-control" placeholder="Hashtag" name="hashtag">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <footer class="footer">
+        <p>&copy; Go BobCats 2017</p>
+    </footer>
