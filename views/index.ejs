@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 
 <html>
-
 <head>
   <link rel="stylesheets" href="public/css/index.css">
   <link rel="stylesheet" href="/css/bootstrap.css">
@@ -20,16 +19,19 @@
               <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a> <!-- might need to fix routing -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">Sign In</a> <!--  need to fix routing -->
+              <a class="nav-link" href="/login">Sign In</a> <!--  need to fix routing -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">Sign Out</a> <!--  need to fix routing -->
+              <a class="nav-link" href="/logout">Sign Out</a> <!--  need to fix routing -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">Home Stream</a> <!--  need to fix routing -->
+              <a class="nav-link" href="/homeStream">Home Stream</a> <!--  need to fix routing -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Upload Image</a> <!--  need to fix routing -->
+              <a class="nav-link" href="/uploadImage">Upload Post</a> <!--  need to fix routing -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/deleteImage">Delete Post</a> <!--  need to fix routing -->
             </li>
           </ul>
         </nav>
@@ -42,7 +44,7 @@
 
 
       <h2 class="page-header">Sign up</h2>
-      <form method="post" action="/">
+      <form method="post" action="/" >
         <div class="form-group">
           <label>Username</label>
           <input type="text" class="form-control" placeholder="Username/Email" name="username">
