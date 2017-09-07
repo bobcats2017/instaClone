@@ -80,7 +80,6 @@ app.get('/homeStream', (req, res) => {
 var upload = multer({ dest: './file_uploader'  });
 
 
-
 app.post('/homeStream', upload.any(), indexController.postImages)
 
 app.get('/deleteImage', (req, res) => {

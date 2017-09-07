@@ -182,7 +182,6 @@ module.exports.postImages = (req, res) => {
         description: req.body.description,
         hashtag: req.body.hashtag,
         image: req.body.image,
-        //title: req.body.title
     }
 
     currentDataObj.attachPicture(input, (err) => {
