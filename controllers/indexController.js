@@ -158,7 +158,7 @@ module.exports.deletePost = (req, res) => {
 /*================POST IMAGES to homeStream==========
 ====================================================*/
 module.exports.postImages = (req, res) => {
-
+console.log(req.file);
     req
         .checkBody('username', 'name is required')
         .notEmpty()
@@ -169,19 +169,27 @@ module.exports.postImages = (req, res) => {
     req
         .checkBody('hashtag', 'hashtag not required')
 
+    req
+        .checkBody('image', 'image needs to be valid') //???
+        .notEmpty();
 
+        // if (req.file) {
+        //         req
+        //         .checkBody('image', 'Please upload your file as jpg, jpeg, gif, svg or png')
+        //         //.isImage(request.file.originalname)
+        //     }
 
     req.sanitizeBody('username').escape();
     req.sanitizeBody('description').escape();
     req.sanitizeBody('hashtag').escape();
-    //req.sanitizeBody('title').escape();
+    req.sanitizeBody('image').escape();
 
 
     const input = {
         username: req.body.username,
         description: req.body.description,
         hashtag: req.body.hashtag,
-        image: req.body.image,
+        image: req.file.path, //????
     }
 
     currentDataObj.attachPicture(input, (err) => {

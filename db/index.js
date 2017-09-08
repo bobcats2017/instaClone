@@ -18,8 +18,8 @@ const userName = "SELECT * FROM users WHERE username=$1"
 const userId = 'SELECT id FROM users WHERE id=$1'
 const addPicture = 'INSERT INTO posts (username, description, hashtag, images) VALUES ($1, $2, $3, $4)';
 const removePicture = 'DELETE FROM posts WHERE username=$1 AND hashtag=$2 AND description=$3';
-const changePicture = 'ALTER TABLE posts WHERE '
-/*======*****ADD USER*****===================
+const changePicture = 'ALTER TABLE posts WHERE ' //not finished
+ /*======*****ADD USER*****===================
 =====================================================*/
 
  const newUser = (data, callback) => {
@@ -117,15 +117,6 @@ console.log(userInfo);
       callback(err, res);
     })
 }
-
-
-
-
-
-
-
-
-
 
 
 /*======*****EXPORTS*****===================
