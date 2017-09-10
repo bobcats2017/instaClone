@@ -1,0 +1,29 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6,
+section, img, audio, video {
+  margin: 0;
+  padding: 0;
+}
+
+footer, header, section {
+  display: block;
+}
+
+body { margin: 0; background:white; }
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  height: 30%;
+}
+
+.image-gallery a {
+  flex-grow: 3; 
+  flex-basis: 200px;
+  max-width: 400px;
+  margin: 50px;
+}
+
+.image-gallery img {
+  height: 100%;
+  width: 100%;
+}
