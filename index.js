@@ -54,12 +54,34 @@ app.get('/login', (req, res) => { //maybe in post
     res.render('login');
 })
 
-/*===upload image route===*/
+/*===============UPLOAD IMAGES ROUTE===================
+=====================================================*/
+
+const storage = multer.diskStorage({
+
+    destination: function(req, file, cb) {
+        cb(null, './file_uploader');
+    },
+    filename: function(req, file, cb) {
+        const extension = (path.extname(file.originalname)).toLowerCase();
+        cb(null, file.fieldname + '-' + Date.now() + '.jpg') //could be .jpg
+    }
+});
+
+const uploadRequestHandler = multer ({ storage: storage });
 
 app.get('/uploadImage', (req, res) => {
     res.render('uploadImage');
 })
 
+app.get('/homeStream', (req, res) => {
+    res.render('homeStream');
+})
+
+//var upload = multer({ dest: './file_uploader'  });
+
+
+app.post('/homeStream',uploadRequestHandler.single('image'), indexController.postImages)
 /*===Post routes===*/
 
 app.post('/', indexController.post);
@@ -71,16 +93,6 @@ app.get('/logout', function(req, res) {
         res.redirect('/logout');
     });
 });
-
-
-app.get('/homeStream', (req, res) => {
-    res.render('homeStream');
-})
-
-var upload = multer({ dest: './file_uploader'  });
-
-
-app.post('/homeStream', upload.any(), indexController.postImages)
 
 app.get('/deleteImage', (req, res) => {
     res.render('deleteImage');
