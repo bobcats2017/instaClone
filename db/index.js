@@ -18,7 +18,8 @@ const userName = "SELECT * FROM users WHERE username=$1"
 const userId = 'SELECT id FROM users WHERE id=$1'
 const addPicture = 'INSERT INTO posts (username, description, hashtag, images) VALUES ($1, $2, $3, $4)';
 const removePicture = 'DELETE FROM posts WHERE username=$1 AND hashtag=$2 AND description=$3';
-const changePicture = 'ALTER TABLE posts WHERE ' //not finished
+const changePicture = 'ALTER TABLE posts WHERE ';//not finished
+const getArticles = 'SELECT * FROM posts';
  /*======*****ADD USER*****===================
 =====================================================*/
 
@@ -118,6 +119,21 @@ console.log(userInfo);
     })
 }
 
+/*================SHOW ALL ARTICLES ====Ubiq======
+=====================================================================*/
+
+const getAllArticles = function(callback) {
+  pgObj.query(getArticles, null, (err, res) => {
+    if (err) {
+      callback(err)
+    } else {
+      callback (null, res.rows)
+    }
+  })
+}
+
+
+
 
 /*======*****EXPORTS*****===================
 =====================================================*/
@@ -128,3 +144,4 @@ module.exports.getUserByUserName = getUserByUserName;
 module.exports.attachPicture = attachPicture;
 module.exports.deletePicture = deletePicture;
 module.exports.editPicture = editPicture;
+module.exports.getAllArticles = getAllArticles;

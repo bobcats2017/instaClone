@@ -4,6 +4,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/css/homeStream.css">  
     <meta charset="utf-8">
+<<<<<<< HEAD
       <title>Login_App
       </title>
   </head>
@@ -45,3 +46,44 @@
 </div>
     </body>
 </html>
+=======
+    <title>Login_App
+    </title>
+</head>
+<div class="container">
+    <div class="header clearfix">
+      <nav>
+        <!-- NAV BAR  -->
+        <ul class="nav nav-pills float-right">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a> <!-- might need to fix routing -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Sign In</a> <!--  need to fix routing -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Sign Out</a> <!--  need to fix routing -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/homeStream">Home Stream</a> <!--  need to fix routing -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Upload Image</a> <!--  need to fix routing -->
+          </li>
+        </ul>
+      </nav>
+    </div>
+<!--            END OF NAV----------------------->
+
+        <div class="container">
+            <% articles.forEach(function(post){ %>
+              <h1><%= post.username %></h1>
+              <h1><%= post.hashtag %></h1>
+              <h1><%= post.images %></h1>
+             <p><%= post.description %></p>
+        <img src="<%= post.images %>" alt="<%= post.title %>">
+
+
+            <% }) %>
+        </div>
+>>>>>>> ebbc0b492ee88bcb075a34b814e3530545d696dd
