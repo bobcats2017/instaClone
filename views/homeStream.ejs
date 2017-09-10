@@ -30,3 +30,15 @@
       </nav>
     </div>
 <!--            END OF NAV----------------------->
+
+        <div class="container">
+            <% articles.forEach(function(post){ %>
+              <h1><%= post.username %></h1>
+              <h1><%= post.hashtag %></h1>
+              <h1><%= post.images %></h1>
+             <p><%= post.description %></p>
+        <img src="<%= post.images %>" alt="<%= post.title %>">
+
+
+            <% }) %>
+        </div>

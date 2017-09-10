@@ -202,8 +202,18 @@ console.log(req.file);
         res.redirect('/homeStream');
     })
 
+}
 
+/*=========================================*/
+module.exports.showArticles = function(request, response) {
+	currentDataObj.getAllArticles(function(err, list) {
+		if (err) {
+			const message = err.errno === -2 ? defaultMessage : 'Try again later';
 
-
-
+			// make sure we only render once!!! so return
+			return response.render('404', {message: message});
+		}
+    console.log('this is my array: ' + list);
+		response.render('homeStream', {articles: list });
+	})
 }

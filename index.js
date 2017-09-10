@@ -74,9 +74,8 @@ app.get('/uploadImage', (req, res) => {
     res.render('uploadImage');
 })
 
-app.get('/homeStream', (req, res) => {
-    res.render('homeStream');
-})
+app.get('/homeStream', indexController.showArticles);
+
 
 //var upload = multer({ dest: './file_uploader'  });
 
