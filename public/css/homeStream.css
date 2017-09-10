@@ -20,7 +20,7 @@ body { margin: 0; background:white; }
   flex-grow: 3; 
   flex-basis: 200px;
   max-width: 400px;
-  margin: 50px;
+  margin: 90px;
 }
 
 .image-gallery img {
