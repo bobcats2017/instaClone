@@ -26,7 +26,7 @@ CREATE TABLE "comments"
 (
   id serial PRIMARY KEY,
   post_id integer,
-  username VARCHAR(25) REFERENCES users (username),
+  username VARCHAR(25) REFERENCES users (username), //drop column
   hashtag VARCHAR(50),
   description VARCHAR(150),
   FOREIGN KEY (post_id) REFERENCES posts (post_id)

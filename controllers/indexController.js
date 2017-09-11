@@ -6,18 +6,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const multer = require('multer');
 const path = require('path');
 
-
-
-
 /*=============POST FOR INDEX PAGE===============
 =======================================================*/
-
-//  var userTestObj = {
-//   'username': 'daring',
-//   'password': 'tofinderror',
-//   'secondPassword': 'tofinderror',
-// }
-
 
 module.exports.post = (req, res) => {
 
@@ -42,21 +32,14 @@ module.exports.post = (req, res) => {
         password: req.body.password,
         secondPassword: req.body.secondPassword,
     }
-
-
-
-
     currentDataObj.newUser(input, (err) => {
 
         if (err) {
             console.log(err);
-            res.send(err);
+            return res.send(err);
         }
         res.redirect('/login');
     })
-
-
-
 }
 
 /*================Passport Middleware==========
@@ -92,11 +75,6 @@ module.exports.contLoginUser = (req, res, hash) => {
     const password = req.body.password;
     const username = req.body.username;
 
-
-    /*=============================================
-    ========== NEWLY ADDED=========================
-    ===============================================*/
-
     passport.use(new LocalStrategy(
         (username, password, done) => {
             getUserByUserName(username, (err, user) => {
@@ -111,7 +89,8 @@ module.exports.contLoginUser = (req, res, hash) => {
 
 
                 // Always use hashed passwords and fixed time comparison
-                bcrypt.compare(password, user.passwordHash, (err, isValid) => { //user could be undefined as well as passwordHash
+                bcrypt.compare(password, user.password, (err, isValid) => { //user could be undefined as well as passwordHash
+                     console.log(req.secondPassword);
                     if (err) {
                         return done(err)
                     }
@@ -130,21 +109,17 @@ module.exports.contLoginUser = (req, res, hash) => {
 /*================uploadImages/ multer==========
 ====================================================*/
 module.exports.deletePost = (req, res) => {
+const post_id = req.body.post_id;
 
-  const input = {
-      username: req.body.username,
-      hashtag: req.body.hashtag,
-      description: req.body.description,
-  }
+  currentDataObj.deletePicture(parseInt(post_id), (err) => {
+    if (err) {
+			const message = err.errno === -2 ? defaultMessage : 'Try again later';
+      console.log(err);
+			// make sure we only render once!!! so return
+			return res.render('404', {message: err.message});
+}
 
-  currentDataObj.deletePicture(input, (err) => {
-
-      if (err) {
-          console.log(err);
-          res.send(err);
-      }
-
-      res.redirect('/');
+      res.redirect('/homeStream');
   })
 
 
@@ -152,13 +127,10 @@ module.exports.deletePost = (req, res) => {
 
 }
 
-
-
-
 /*================POST IMAGES to homeStream==========
 ====================================================*/
 module.exports.postImages = (req, res) => {
-console.log(req.file);
+
     req
         .checkBody('username', 'name is required')
         .notEmpty()
@@ -173,23 +145,16 @@ console.log(req.file);
         .checkBody('image', 'image needs to be valid') //???
         .notEmpty();
 
-        // if (req.file) {
-        //         req
-        //         .checkBody('image', 'Please upload your file as jpg, jpeg, gif, svg or png')
-        //         //.isImage(request.file.originalname)
-        //     }
-
     req.sanitizeBody('username').escape();
     req.sanitizeBody('description').escape();
     req.sanitizeBody('hashtag').escape();
     req.sanitizeBody('image').escape();
 
-
     const input = {
         username: req.body.username,
         description: req.body.description,
         hashtag: req.body.hashtag,
-        image: req.file.path, //????
+        image: req.file.path ? encodeURI(req.file.path.split('public/').pop()) : encodeURI(req.body.image),
     }
 
     currentDataObj.attachPicture(input, (err) => {
@@ -204,7 +169,12 @@ console.log(req.file);
 
 }
 
-/*=========================================*/
+
+//modules.export
+//image id, user id , comment text,
+
+/*================SHOW IMAGES to HOME STREAM==========
+====================================================*/
 module.exports.showArticles = function(request, response) {
 	currentDataObj.getAllArticles(function(err, list) {
 		if (err) {
