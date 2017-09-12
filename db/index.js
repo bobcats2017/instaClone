@@ -19,10 +19,13 @@ const addUser = 'INSERT INTO users (username, password, secondPassword) VALUES (
 const userName = "SELECT * FROM users WHERE username=$1"
 const userId = 'SELECT id FROM users WHERE id=$1'
 const addPicture = 'INSERT INTO posts (username, description, hashtag, images) VALUES ($1, $2, $3, $4)';
-const removePicture = 'DELETE FROM posts WHERE username=$1 AND hashtag=$2 AND description=$3';
-const changePicture = 'ALTER TABLE posts WHERE ';//not finished
+const removePicture = 'DELETE FROM posts WHERE post_id=$1';
+const changePicture = 'ALTER TABLE posts WHERE ';/////////////////not finished
 const getArticles = 'SELECT * FROM posts';
+
 const addCommentSql = 'INSERT INTO comments (user_id, description, post_id) VALUES ($1, $2, $3)';
+const addComments = ''
+
  /*======*****ADD USER*****===================
 =====================================================*/
 
@@ -105,16 +108,17 @@ var comment = [
 /*================DELETE PICTURE BY USERNAME AND HASHTAG====Ubiq======
 =====================================================================*/
 
-const deletePicture = (data, callback) => {
+const deletePicture = (post_id, callback) => {
 
-   var userInfo = [
-      data.username,
-      data.hashtag,
-      data.description,
-  ] //Query values must be an array
+  //  var userInfo = [
+  //     data.username,
+  //     data.hashtag,
+  //     data.description,
+  // ] //Query values must be an array
 
-console.log(userInfo);
-  pgObj.query(removePicture,userInfo, callback, (err, res) => {
+console.log(removePicture);
+console.log(post_id);
+  pgObj.query(removePicture, [post_id], (err, res) => {
 
       callback(err, res);
     })
@@ -129,7 +133,7 @@ const editPicture = (data, callback) => {
       data.hashtag,
   ] //Query values must be an array
 
-console.log(userInfo);
+
   pgObj.query(removePicture,userInfo, callback, (err, res) => {
 
       callback(err, res);

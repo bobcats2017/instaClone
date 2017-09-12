@@ -60,7 +60,7 @@ app.get('/login', (req, res) => { //maybe in post
 const storage = multer.diskStorage({
 
     destination: function(req, file, cb) {
-        cb(null, './file_uploader');
+        cb(null, './public/file_uploader');
     },
     filename: function(req, file, cb) {
         const extension = (path.extname(file.originalname)).toLowerCase();
@@ -96,6 +96,7 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/deleteImage', (req, res) => {
+
     res.render('deleteImage');
 })
 
