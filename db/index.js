@@ -21,11 +21,14 @@ const addPicture = 'INSERT INTO posts (username, description, hashtag, images) V
 const removePicture = 'DELETE FROM posts WHERE post_id=$1';
 const changePicture = 'ALTER TABLE posts WHERE ';/////////////////not finished
 const getArticles = 'SELECT * FROM posts';
+
+const addCommentSql = 'INSERT INTO comments (user_id, description, post_id) VALUES ($1, $2, $3)';
 const addComments = ''
+
  /*======*****ADD USER*****===================
 =====================================================*/
 
- const newUser = (data, callback) => {
+const newUser = (data, callback) => {
 
 const loginObj = [
   data.username,
@@ -73,7 +76,7 @@ const getUserById = (data, callback) => {
 
 const attachPicture = (data, callback) => {
 
-   var postImageObj = [
+  var postImageObj = [
       data.username,
       data.description,
       data.hashtag,
@@ -85,6 +88,20 @@ const attachPicture = (data, callback) => {
 
       callback(err, res);
     })
+}
+
+
+const addComment = (data, callback) => {
+
+var comment = [
+    data.user_id,
+    data.description,
+    data.post_id,
+  ] 
+
+  pgObj.query(addCommentSql, comment, callback, (err, res) => {
+    callback(err, res);
+  })
 }
 
 /*================DELETE PICTURE BY USERNAME AND HASHTAG====Ubiq======
@@ -148,3 +165,4 @@ module.exports.attachPicture = attachPicture;
 module.exports.deletePicture = deletePicture;
 module.exports.editPicture = editPicture;
 module.exports.getAllArticles = getAllArticles;
+module.exports.addComment = addComment;
