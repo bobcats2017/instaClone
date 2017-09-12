@@ -111,7 +111,7 @@ module.exports.contLoginUser = (req, res, hash) => {
 
 
                 // Always use hashed passwords and fixed time comparison
-                bcrypt.compare(password, user.passwordHash, (err, isValid) => { //user could be undefined as well as passwordHash
+                bcrypt.compare(password, user.password, (err, isValid) => { //user could be undefined as well as passwordHash
                     if (err) {
                         return done(err)
                     }
@@ -193,6 +193,32 @@ console.log(req.file);
     }
 
     currentDataObj.attachPicture(input, (err) => {
+
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+
+        res.redirect('/homeStream');
+    })
+
+}
+
+module.exports.addComment = (req, res) => {
+console.log(req.file);
+    req
+        .checkBody('description', 'description is required')
+        .notEmpty();
+    
+    req.sanitizeBody('description').escape();
+    
+    const input = {
+        user_id: req.body.user_id,
+        description: req.body.description,
+        post_id: req.body.post_id,
+    }
+
+    currentDataObj.addComment(input, (err) => {
 
         if (err) {
             console.log(err);

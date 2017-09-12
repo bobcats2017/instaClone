@@ -81,6 +81,8 @@ app.get('/homeStream', indexController.showArticles);
 
 
 app.post('/homeStream',uploadRequestHandler.single('image'), indexController.postImages)
+app.post('/addComment', indexController.addComment);
+
 /*===Post routes===*/
 
 app.post('/', indexController.post);
