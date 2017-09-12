@@ -90,7 +90,8 @@ module.exports.contLoginUser = (req, res, hash) => {
 
                 // Always use hashed passwords and fixed time comparison
                 bcrypt.compare(password, user.password, (err, isValid) => { //user could be undefined as well as passwordHash
-                     console.log(req.secondPassword);
+
+                    console.log(req.secondPassword);
                     if (err) {
                         return done(err)
                     }
@@ -170,11 +171,34 @@ module.exports.postImages = (req, res) => {
 }
 
 
-//modules.export
-//image id, user id , comment text,
+module.exports.addComment = (req, res) => {
+console.log(req.file);
+    req
+        .checkBody('description', 'description is required')
+        .notEmpty();
+    
+    req.sanitizeBody('description').escape();
+    
+    const input = {
+        user_id: req.body.user_id,
+        description: req.body.description,
+        post_id: req.body.post_id,
+    }
 
-/*================SHOW IMAGES to HOME STREAM==========
-====================================================*/
+    currentDataObj.addComment(input, (err) => {
+
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+
+        res.redirect('/homeStream');
+    })
+
+}
+
+/*=========================================*/
+
 module.exports.showArticles = function(request, response) {
 	currentDataObj.getAllArticles(function(err, list) {
 		if (err) {
