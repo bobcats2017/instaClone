@@ -13,11 +13,11 @@ CREATE TABLE "posts"
 (
   post_id serial PRIMARY KEY,
   user_id  integer UNIQUE,
-  username VARCHAR(30) UNIQUE,
+  username VARCHAR(30),
   hashtag VARCHAR(30),
   image VARCHAR(30),
   description VARCHAR(80),
-  FOREIGN KEY (user_id, username) REFERENCES users (id, username)
+  FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 
@@ -26,8 +26,14 @@ CREATE TABLE "comments"
 (
   id serial PRIMARY KEY,
   post_id integer,
-  username VARCHAR(25) REFERENCES users (username), //drop column
   hashtag VARCHAR(50),
   description VARCHAR(150),
   FOREIGN KEY (post_id) REFERENCES posts (post_id)
+);
+
+
+CREATE TABLE "hashtag"
+(
+  id serial PRIMARY KEY,
+  hashtag VARCHAR(50)
 );

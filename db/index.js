@@ -4,10 +4,10 @@ const pg = require('pg');
 
 
 const pgObj = new pg.Pool({
-  user: 'jayneholsinger',
+  user: 'dan',
   host: '127.0.0.1',
-  database: 'instaClone',
-  password: '', //never allow password to be viewed by anyone
+  database: 'instaclone',
+  password: 'Paradise21', //never allow password to be viewed by anyone
   port: 5432,
 });
 

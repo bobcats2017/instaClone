@@ -1,1 +1,1 @@
-ALTER TABLE "posts" DROP COLUMN "image";
+ALTER TABLE "posts" ADD COLUMN images VARCHAR(150);
