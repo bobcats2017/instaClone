@@ -100,6 +100,8 @@ app.get('/deleteImage', (req, res) => {
     res.render('deleteImage');
 })
 
+app.get('/editPost/:post_id', indexController.showEditedPost);
+
 app.post('/deleteImage', indexController.deletePost);
 
 

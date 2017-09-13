@@ -23,7 +23,7 @@ const changePicture = 'ALTER TABLE posts WHERE ';/////////////////not finished
 const getArticles = 'SELECT * FROM posts';
 
 const addCommentSql = 'INSERT INTO comments (user_id, description, post_id) VALUES ($1, $2, $3)';
-const addComments = ''
+const getSpecificArticle = 'SELECT * FROM posts WHERE id=$1 limit 1';
 
  /*======*****ADD USER*****===================
 =====================================================*/
@@ -97,7 +97,7 @@ var comment = [
     data.user_id,
     data.description,
     data.post_id,
-  ] 
+  ]
 
   pgObj.query(addCommentSql, comment, callback, (err, res) => {
     callback(err, res);
@@ -153,6 +153,19 @@ const getAllArticles = function(callback) {
 }
 
 
+/*================GET ONE ARTICLE ====Ubiq======
+=====================================================================*/
+const getOneArticle = (data, callback) => { //maybe post id
+
+  pgObj.query(getSpecificArticle,[data.id], callback, (err, res) => {
+
+      callback(err, res.rows[0]);
+    })
+}
+
+
+
+
 
 
 /*======*****EXPORTS*****===================
@@ -166,3 +179,4 @@ module.exports.deletePicture = deletePicture;
 module.exports.editPicture = editPicture;
 module.exports.getAllArticles = getAllArticles;
 module.exports.addComment = addComment;
+module.exports.getOneArticle = getOneArticle;

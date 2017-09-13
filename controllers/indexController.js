@@ -110,18 +110,20 @@ module.exports.contLoginUser = (req, res, hash) => {
 /*================uploadImages/ multer==========
 ====================================================*/
 module.exports.deletePost = (req, res) => {
-const post_id = req.body.post_id;
+    const post_id = req.body.post_id;
 
-  currentDataObj.deletePicture(parseInt(post_id), (err) => {
-    if (err) {
-			const message = err.errno === -2 ? defaultMessage : 'Try again later';
-      console.log(err);
-			// make sure we only render once!!! so return
-			return res.render('404', {message: err.message});
-}
+    currentDataObj.deletePicture(parseInt(post_id), (err) => {
+        if (err) {
+            const message = err.errno === -2 ? defaultMessage : 'Try again later';
+            console.log(err);
+            // make sure we only render once!!! so return
+            return res.render('404', {
+                message: err.message
+            });
+        }
 
-      res.redirect('/homeStream');
-  })
+        res.redirect('/homeStream');
+    })
 
 
 
@@ -172,13 +174,13 @@ module.exports.postImages = (req, res) => {
 
 
 module.exports.addComment = (req, res) => {
-console.log(req.file);
+    console.log(req.file);
     req
         .checkBody('description', 'description is required')
         .notEmpty();
-    
+
     req.sanitizeBody('description').escape();
-    
+
     const input = {
         user_id: req.body.user_id,
         description: req.body.description,
@@ -200,14 +202,43 @@ console.log(req.file);
 /*=========================================*/
 
 module.exports.showArticles = function(request, response) {
-	currentDataObj.getAllArticles(function(err, list) {
-		if (err) {
-			const message = err.errno === -2 ? defaultMessage : 'Try again later';
+    currentDataObj.getAllArticles(function(err, list) {
+        if (err) {
+            const message = err.errno === -2 ? defaultMessage : 'Try again later';
 
-			// make sure we only render once!!! so return
-			return response.render('404', {message: message});
-		}
-    console.log('this is my array: ' + list);
-		response.render('homeStream', {articles: list });
-	})
+            // make sure we only render once!!! so return
+            return response.render('404', {
+                message: message
+            });
+        }
+        console.log('this is my array: ' + list);
+        response.render('homeStream', {
+            articles: list
+        });
+    })
+}
+
+
+
+/*==================SHOW EDITED POST=================*/
+module.exports.showEditedPost = function(request, response) {
+    const id = request.params.post_id;
+    console.log(id);
+    currentDataObj.getOneArticle(parseInt(id), function(err, article) {
+        if (err) {
+            const message = err.errno === -2 ? defaultMessage : 'Try again later';
+
+            // make sure we only render once!!! so return
+            return response.render('404', {
+                message: message
+            });
+        }
+        response.render('editPost', {
+            article: article,
+            description: article.description,
+            image: article.image, //might be file path
+            hashtag: article.hashtag,
+
+        });
+    })
 }
