@@ -172,6 +172,8 @@ module.exports.postImages = (req, res) => {
 
 }
 
+/*================POST COMMENTS to homeStream==========
+====================================================*/
 
 module.exports.addComment = (req, res) => {
     console.log(req.file);
@@ -199,7 +201,7 @@ module.exports.addComment = (req, res) => {
 
 }
 
-/*=========================================*/
+/*===========RENDER post_id to editPost===========*/
 
 module.exports.showArticles = function(request, response) {
     currentDataObj.getAllArticles(function(err, list) {
@@ -211,7 +213,7 @@ module.exports.showArticles = function(request, response) {
                 message: message
             });
         }
-        console.log('this is my array: ' + list);
+
         response.render('homeStream', {
             articles: list
         });
@@ -222,23 +224,23 @@ module.exports.showArticles = function(request, response) {
 
 /*==================SHOW EDITED POST=================*/
 module.exports.showEditedPost = function(request, response) {
-    const id = request.params.post_id;
-    console.log(id);
-    currentDataObj.getOneArticle(parseInt(id), function(err, article) {
+    const id = parseInt(request.params.post_id);
+    currentDataObj.getOneArticle(id, function(err, articles) {
         if (err) {
             const message = err.errno === -2 ? defaultMessage : 'Try again later';
-
             // make sure we only render once!!! so return
             return response.render('404', {
                 message: message
             });
         }
-        response.render('editPost', {
-            article: article,
-            description: article.description,
-            image: article.image, //might be file path
-            hashtag: article.hashtag,
+        const place = articles.rows[0]
+        // console.log('this is res.rows' + articles.fields[0])
 
-        });
+        response.render('editPost', {article: {
+            article: place.post_id,
+            description: place.description,
+            image: place.images, //might be file path
+            hashtag: place.hashtag
+        }});
     })
 }

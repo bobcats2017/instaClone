@@ -21,9 +21,8 @@ const addPicture = 'INSERT INTO posts (username, description, hashtag, images) V
 const removePicture = 'DELETE FROM posts WHERE post_id=$1';
 const changePicture = 'ALTER TABLE posts WHERE ';/////////////////not finished
 const getArticles = 'SELECT * FROM posts';
-
 const addCommentSql = 'INSERT INTO comments (user_id, description, post_id) VALUES ($1, $2, $3)';
-const getSpecificArticle = 'SELECT * FROM posts WHERE id=$1 limit 1';
+const getSpecificArticle = 'SELECT * FROM posts WHERE post_id=$1 limit 1';
 
  /*======*****ADD USER*****===================
 =====================================================*/
@@ -115,8 +114,7 @@ const deletePicture = (post_id, callback) => {
   //     data.description,
   // ] //Query values must be an array
 
-console.log(removePicture);
-console.log(post_id);
+
   pgObj.query(removePicture, [post_id], (err, res) => {
 
       callback(err, res);
@@ -155,17 +153,14 @@ const getAllArticles = function(callback) {
 
 /*================GET ONE ARTICLE ====Ubiq======
 =====================================================================*/
-const getOneArticle = (data, callback) => { //maybe post id
+const getOneArticle = (data, callback) => {
+  // console.log('this is the data!!: ' + data);
+   //maybe post id
 
-  pgObj.query(getSpecificArticle,[data.id], callback, (err, res) => {
-
+  pgObj.query(getSpecificArticle,[data],callback, (err, res) => {
       callback(err, res.rows[0]);
     })
 }
-
-
-
-
 
 
 /*======*****EXPORTS*****===================
