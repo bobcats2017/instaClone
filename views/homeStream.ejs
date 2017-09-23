@@ -52,3 +52,50 @@
             <a href="/editPost/:<%= post.post_id %>">EDIT</a>
         <% }) %>
     </div>
+
+<section class="body-container">
+    <div class="card">
+        <div class="card-header">
+    </div>
+        <div class="profile-info">
+    </div>
+        <div class="profile-name"><h4><%= post.username %></h4></div>
+    </div>
+
+    <div class="content">  
+    <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/jeremiah-wilson-1.jpg" alt></div>
+    </div>
+
+    <div class="card-footer"><div class="description">
+    <div class="profile-name">  
+        <%= post.username %>
+    </div>
+    <p><span class="username">Description</span><%= post.description %></p>
+        
+  <div class="comments">
+    <p><span class="username">Comments:</span>Comments</p>
+    <p> <span class="username">HashTag:</span><%= post.hashtag %></p>
+  </div>
+  
+   <div class="form">
+  
+  <div class="inputWithIcon">
+  <input type="text" placeholder="add a comment..limit 150 characters"/>
+  </div>
+    
+  <div class="inputWithIcon">
+  <input type="text" placeholder="hash it...."/>
+  </div>
+
+  <div class="user-description">
+  <input type="text" placeholder="placeholder for description"/>   
+  </div>
+
+  <div class="btn-post">
+  <form id="btn-post-comments">
+   <button id="btn-post-comment">POST</button>
+   </form>
+  
+
+</body>
+</html>
