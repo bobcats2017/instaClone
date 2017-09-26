@@ -1,0 +1,43 @@
+<link rel="stylesheets" href="public/css/login.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
+<div class="container">
+    <div class="header clearfix">
+      <nav>
+        <!-- NAV BAR  -->
+        <ul class="nav nav-pills float-right">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a> <!-- might need to fix routing -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Sign Out</a> <!--  need to fix routing -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/portfolio">Portfolio Page</a> <!--  need to fix routing -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Post Image</a> <!--  need to fix routing -->
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+<h2 class="page-header">Upload Portfolio</h2>
+<form method="POST" action="/portfolio" enctype="multipart/form-data">
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" placeholder="Username" name="username">
+  </div>
+  <div class="form-group">
+    <label>Project Link(not required but should be included)</label>
+    <input type="text" class="form-control" placeholder="project url" name="project_link">
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input type="text" class="form-control" placeholder="Describe it mate" name="description">
+  </div>
+  <div class="form-group">
+    <label>Image</label>
+    <input type="file" class="form-control" name="image">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

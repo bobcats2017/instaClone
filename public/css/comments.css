@@ -1,3 +1,12 @@
+.jumbotron .container{
+ color: black;
+ font-family: 'Megrim', cursive;
+ font-size: 100px;
+ text-align: center;
+ border-radius: -50px;
+ font-weight: -100;
+  }
+
       body {
         background:#fafafa;
         position: absolute;
@@ -29,29 +38,17 @@
 
 
     .body-container{
-
         background:#fafafa;
-        padding-bottom: 800px;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 50px;
-        margin-bottom: 300px;
-        margin-top: 0;
-        margin-left: 220px;
-        margin-right: 220px;
-        width: 500px;
-        height: 500px;
-
     }
 
     .card{
         background:#fff;
-        margin: 0 auto;
         width: 500px;
         border: 1px solid #d1d1d1;
         border-radius: 12px;
-        float: left;
-
+        left: 100%;
+        max-width: 300px;
+        max-height: 300px;
     }
 
     .description{
@@ -174,4 +171,25 @@ form{
   border-style: solid;
   max-width: 300px;
   max-height: 300px;
+}
+.content-container .container{
+  max-height: 500px;
+  max-width: 500px;
+}
+ .card .content .card-footer .description{
+   max-height: 200px;
+ }
+.body-container{
+  max-height: 500px;
+  max-width: 500px;
+}
+ .container .content-container{
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-basis: auto;
+  flex-direction: row;
+  height: 1800;
+  width: 1800;
+
 }

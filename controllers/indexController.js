@@ -244,3 +244,82 @@ module.exports.showEditedPost = function(request, response) {
         }});
     })
 }
+
+/*============Post Blog Posts to Blog===========*/
+module.exports.postPortfolioPosts = (req, res) => {
+//username, image, description, project_link
+
+  req
+      .checkBody('username', 'name is required')
+      .notEmpty()
+
+  req
+      .checkBody('description', 'password is required')
+      .notEmpty();
+  req
+      .checkBody('project_link', 'project Link should be included')
+
+  req
+      .checkBody('image', 'image needs to be valid') //???
+      .notEmpty();
+
+  req.sanitizeBody('username').escape();
+  req.sanitizeBody('description').escape();
+  req.sanitizeBody('project_link').escape();
+  req.sanitizeBody('image').escape();
+
+  const input = {
+      username: req.body.username,
+      description: req.body.description,
+      hashtag: req.body.project_link,
+      image: req.file.path ? encodeURI(req.file.path.split('public/').pop()) : encodeURI(req.body.image),
+  }
+
+  currentDataObj.postPortfolioCard(input, (err) => {
+
+      if (err) {
+          console.log(err);
+          res.send(err);
+      }
+
+      res.redirect('/portfolio');
+  })}
+
+/*============Post Blog Posts to Blog============
+================================================*/
+
+  module.exports.showBlogPosts = function(request, response) {
+      currentDataObj.AllBlogPosts(function(err, list) {
+              if (err) {
+              const message = err.errno === -2 ? defaultMessage : 'Try again later';
+
+              // make sure we only render once!!! so return
+              return response.render('404', {
+                  message: message
+              });
+          }
+
+          response.render('portfolio', {
+              articles: list
+          });
+      })
+  }
+
+  /*============DELETE Blog Posts at Blog============
+  ================================================*/
+  module.exports.deleteBlogPost = (req, res) => {
+      const post_id = req.body.post_id;
+
+      currentDataObj.deletePost(parseInt(post_id), (err) => {
+          if (err) {
+              const message = err.errno === -2 ? defaultMessage : 'Try again later';
+              console.log(err);
+              // make sure we only render once!!! so return
+              return res.render('404', {
+                  message: err.message
+              });
+          }
+
+          res.redirect('/portfolio');
+      })
+};

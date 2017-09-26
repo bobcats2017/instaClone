@@ -44,6 +44,7 @@
 
 <div class="content-container">
 <div class="container">
+  //username, image, description, project_link
         <% articles.forEach(function(post){ %>
             <section class="body-container">
                 <div class="card">
@@ -62,7 +63,7 @@
 
         <div class="comments">
             <p><span class="username">Comments:</span></p>
-            <p><span class="username">HashTag:</span><%= post.hashtag %></p>
+            <p><span class="username">Project Link:</span><%= post.project_link %></p>
         </div>
             <form method="POST" action="/addComment">
                 <div class="form-group">
@@ -75,9 +76,30 @@
                 <a href="/editPost/:<%= post.post_id %>">EDIT</a>
                 </div>
             </form>
-
+            <form action="/deletePortfolio" method="POST">
+            <input class="article-delete-btn" type="submit" value="Delete Post">
+            <input name="_method" type="hidden" value="DELETE">
+            <input name="post_id" type="hidden" value="<%= post.post_id %>">
+            </form>
         <% }) %>
     </section>
     </div>
+
+    <ul id="slides">
+        <li class="slide showing">Slide 1</li>
+        <li class="slide">Slide 2</li>
+        <li class="slide">Slide 3</li>
+        <li class="slide">Slide 4</li>
+        <li class="slide">Slide 5</li>
+    </ul>
+
+
+
+
+<style>
+
+</style>
+
+
 </html>
 </div>

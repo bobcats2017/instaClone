@@ -75,7 +75,7 @@ app.get('/uploadImage', (req, res) => {
 })
 
 app.get('/homeStream', indexController.showArticles);
-
+app.get('/portfolio', indexController.showBlogPosts);
 
 //var upload = multer({ dest: './file_uploader'  });
 
@@ -102,7 +102,22 @@ app.get('/deleteImage', (req, res) => {
 
 app.get('/editPost/:post_id', indexController.showEditedPost);
 
-app.post('/deleteImage', indexController.deletePost);
+app.get('/deletePortfolio', (req, res) => {
+  res.send('Your Post has been deleted');
+})
+app.post('/deletePortfolio', indexController.deleteBlogPost);
+
+
+app.get('/portfolio', (req, res) => {
+res.render('portfolio');
+});
+
+app.get('/postPortfolio', (req, res) => {
+  res.render('postPortfolio');
+})
+app.post('/portfolio',uploadRequestHandler.single('image'), indexController.postPortfolioPosts)
+
+
 
 
 app.listen(3000, () => {
