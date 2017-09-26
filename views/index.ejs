@@ -1,75 +1,92 @@
-
-
 <html>
+
 <head>
-  <link rel="stylesheets" href="public/css/index.css">
-  <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100&effect=neon">
+    <script src="https://use.fontawesome.com/144ed3a5c7.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Megrim|Playfair+Display|Exo" rel="stylesheet">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login_App
     </title>
+    <script src="anime.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <!-- NAV BAR  -->
-          <ul class="nav nav-pills float-right">
-            <li class="nav-item">
-              <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a> <!-- might need to fix routing -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Sign In</a> <!--  need to fix routing -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Sign Out</a> <!--  need to fix routing -->
-            </li>
-           <li class="nav-item">
-              <a class="nav-link" href="/homeStream">Home Stream</a>
-                    <!--  need to fix routing -->
-              </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Upload Image</a>
-                    <!--  need to fix routing -->
-            </li>
-         
-         
-         
-         
-         
-          </ul>
-        </nav>
-      </div>
-
-      <div class="jumbotron">
-        <h1 class="display-3">Welcome to Go BobCatz Stream App</h1> <!--hahahahahaha -->
-        <p class="lead">Sign up for one of the most popular streaming apps!</p>
-      </div>
-
-
-      <h2 class="page-header">Sign up</h2>
-      <form method="post" action="/" >
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" class="form-control" placeholder="Username/Email" name="username">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="font-effect-neon">DWE Designs</div>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-control" placeholder="Password" name="password">
+    </div>
+    </div>
+    <div id="Menu">Menu</div>
+
+    <div class="testContainer">
+        <div class="container">
+            <div class="header clearfix">
+                <nav data-toggle="collapse">
+                    <!-- NAV BAR  -->
+                    <ul class="nav nav-pills float-right">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                            <!-- might need to fix routing -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Sign In</a>
+                            <!--  need to fix routing -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Sign Out</a>
+                            <!--  need to fix routing -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/homeStream">Topic Posts</a>
+                            <!--  need to fix routing -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Upload Image</a>
+                            <!--  need to fix routing -->
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <div class="form-group">
-          <label>Confirm Password</label>
-          <input type="password" class="form-control" placeholder="Password" name="secondPassword">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+        <!-- /container -->
+        <script>
+            var test = document.getElementById('testAnimations');
+            var designs_logo = document.querySelector('.font-effect-neon');
+            var container = document.querySelector('.container');
+            var menu = document.getElementById('Menu');
+            var container_style = document.querySelector('.testContainer');
+            container_style.style.visibility = 'hidden';
 
-      <footer class="footer">
-        <p>&copy; Go BobCats 2017</p>
-      </footer>
 
-    </div> <!-- /container -->
+            anime({
+                targets: designs_logo,
+                color: '#000000',
+                textShadow: '#000000',
+                borderRadius: 40,
+                easing: 'easeInOutQuad',
+                loop: true,
+                duration: function(designs_logo, i, l) {
+                    return 7000 + (i * 9000);
+                }
+            });
+            anime({
+                targets: menu,
+                color: '#ffffff',
+                easing: 'easeInOutQuad',
+                delay: function(menu, i, l) {
+                    return 6000 + (i * 8000);
+                }
+            });
 
+            menu.addEventListener('click', function() {
+                container_style.style.visibility = 'visible';
+            })
+        </script>
 </body>
 
 </html>

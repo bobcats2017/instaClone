@@ -5,31 +5,32 @@
         top: 50px;
         bottom: 0;
     }
-    
+
     .nav > li > a {
         position: relative;
         display: inline;
         padding: 10px 15px;
-        font-size: 16px; 
+        font-size: 16px;
     }
-    
+
     a {
         box-sizing: border-box;
         width: 25%;
         display: inline-block;
         margin-left: -3px;
-        text-align: center; 
+        text-align: center;
         padding: 14 px;
     }
-    
-    
+
+
     a:hover {
         color:red;
     }
-    
-     
+
+
     .body-container{
-        background:#fafafa; 
+
+        background:#fafafa;
         padding-bottom: 800px;
         padding-left: 0px;
         padding-right: 0px;
@@ -40,9 +41,9 @@
         margin-right: 220px;
         width: 500px;
         height: 500px;
-    
+
     }
-    
+
     .card{
         background:#fff;
         margin: 0 auto;
@@ -50,18 +51,19 @@
         border: 1px solid #d1d1d1;
         border-radius: 12px;
         float: left;
+
     }
-    
+
     .description{
         background: #e5e5e5;
         margin-left: 0px;
     }
-    
-    
+
+
     .card-header{
         padding: 5px;
     }
-    
+
     .profile-info{
         display: inline-block;
     }
@@ -74,41 +76,43 @@
         padding-top: 5px;
         padding-bottom: 5px;
     }
-    
+
     img{
         width: 100%;
     }
-     
+
     .card-footer{
         padding: 30px, 10px;
         box-sizing: border-box;
+        max-width: 300px;
+        max-height: 300px;
     }
-    
+
     .description
         p{
          font-size: 14px;
          font-family: 'Open Sans', sans-serif;
          margin: 12px;
     }
-    
+
     .username{
           font-family: 'Open Sans', sans-serif;
           font-weight: 900;
           padding-right: 5px;
     }
-    
+
     comments.p{
             font-size: 14px;
             margin: 0;
             padding: 0 0 5px 0;
     }
-    
+
     comments.username{
           font-family: 'Open Sans', sans-serif;
           font-weight: 700;
           padding-right: 5px;
     }
-    
+
     input{
         width: 100%;
         border: 2px solid #fafafa;
@@ -120,12 +124,12 @@
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
     }
-    
+
     .inputWithIcon{
         background:#e5e5e5;
     }
-    
-    
+
+
     .btn-post{
         padding: 15px;
         color: dodgerBlue;
@@ -134,7 +138,7 @@
         font-family: 'Open Sans', sans-serif;
         font-weight: 900;
     }
-    
+
     label {
         display: inline-block;
         max-width: 100%;
@@ -160,3 +164,14 @@ form{
         padding-top: 5px;
         padding-bottom: 5px;
     }
+
+.content-container .container .body-container .card .content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-basis: auto;
+  flex-wrap: wrap;
+  border-style: solid;
+  max-width: 300px;
+  max-height: 300px;
+}

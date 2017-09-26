@@ -3,16 +3,13 @@
 
 h1{
 border-style: solid;
-
-
-
 }
-
 
 /*==========GRABBED FROM BOOTSTRAP NARROW JUMBOTRON EXAMPLE==============*/
 body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  background-color: #000000;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -45,7 +42,7 @@ body {
 /* Customize container */
 @media (min-width: 48em) {
   .container {
-    max-width: 46rem;
+    max-width: 100%;
   }
 }
 .container-narrow > hr {
@@ -56,6 +53,7 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: .05rem solid #e5e5e5;
+background-color: black !important;
 }
 .jumbotron .btn {
   padding: .75rem 1.5rem;
@@ -86,7 +84,37 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+      background-color: black;
   }
+
+.jumbotron .container{
+ color: black;
+ font-family: 'Megrim', cursive;
+ font-size: 100px;
+ background-color: black;
+ text-align: center;
+ border-radius: -50px;
+ font-weight: -100;
+  }
+
+#Menu{
+color: black;
+font-family: 'Megrim', cursive;
+font-size: 40px;
+margin: 0 auto;
+border-radius: 25px;
+border-color: white;
+width: 100px;
 }
 
-
+.testContainer .nav-item a{
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  color: white !important;
+  font-family: 'Exo', sans-serif;
+}
+.testContainer .nav-item a:hover{
+  color: purple;
+  background-color: black;
+}

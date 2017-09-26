@@ -1,0 +1,11 @@
+#login_container .page-header{
+  font-family: 'Lobster', sans-serif;
+  font-size: 50px;
+  color: black;
+
+body{
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Lobster', sans-serif;
+  font-size: 25px;
+}

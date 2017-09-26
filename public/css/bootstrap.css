@@ -1085,8 +1085,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333;
-  background-color: #fff;
+  
+
 }
 input,
 button,
@@ -4960,7 +4960,6 @@ a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
 }
 .jumbotron h1,
 .jumbotron .h1 {
