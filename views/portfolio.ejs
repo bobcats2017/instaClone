@@ -1,5 +1,7 @@
 <html>
+
 <head>
+    <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/comments.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster|Megrim|Playfair+Display|Exo" rel="stylesheet">
@@ -42,9 +44,33 @@
         </nav>
     </div>
 
-<div class="content-container">
+    <div class="grid-system">
+        <div class="container">
+          <div class="row">
+                <% articles.forEach(function(post){ %>
+                    <div class="col-md-4">
+                        <div class="profile-name">
+                            <%= post.username %>
+                        </div>
+                        <p><span class="username">Description:</span>
+                            <%= post.description %>
+                        </p>
+                        <div class="content">
+                            <div class="image"><img src=<%=post.image %> class="img-thumbnail" alt="fish"></div>
+                            <div class="comments">
+                                <p><span class="username">Comments:</span></p>
+                                <p><span class="username">Project Link:</span>
+                                    <%= post.project_link %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <% }) %>
+
+            <!--<div class="content-container">
 <div class="container">
-  //username, image, description, project_link
         <% articles.forEach(function(post){ %>
             <section class="body-container">
                 <div class="card">
@@ -83,23 +109,6 @@
             </form>
         <% }) %>
     </section>
-    </div>
-
-    <ul id="slides">
-        <li class="slide showing">Slide 1</li>
-        <li class="slide">Slide 2</li>
-        <li class="slide">Slide 3</li>
-        <li class="slide">Slide 4</li>
-        <li class="slide">Slide 5</li>
-    </ul>
-
-
-
-
-<style>
-
-</style>
-
+  </div> -->
 
 </html>
-</div>

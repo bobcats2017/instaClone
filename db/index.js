@@ -1,14 +1,22 @@
-require('dotenv').config()
+require('dotenv').config({path: '../.env'});
 const pg = require('pg');
+
+//
+// DATABASE_URL=postgres://postgres@localhost/instaclone
+
+// DB_PASS=Paradise21
+// DB_PORT=5432
+// DB_HOST=127.0.0.1
+
 
 
 
 const pgObj = new pg.Pool({
-    user: 'dan',
-    host: '127.0.0.1',
-    database: 'instaclone',
-    password: 'Paradise21', //never allow password to be viewed by anyone
-    port: 5432,
+    database: process.env.DB_DATABASE_URL,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    password: process.env.DB_PASS, //never allow password to be viewed by anyone
+    port: process.env.DB_PORT,
 });
 
 
