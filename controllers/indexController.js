@@ -105,9 +105,9 @@ module.exports.contLoginUser = (req, res, hash) => {
     ))
     res.redirect('/');
 }
-
-
 /*================uploadImages/ multer==========
+
+
 ====================================================*/
 module.exports.deletePost = (req, res) => {
     const post_id = req.body.post_id;
@@ -158,7 +158,7 @@ module.exports.postImages = (req, res) => {
         description: req.body.description,
         hashtag: req.body.hashtag,
         image: req.file.path ? encodeURI(req.file.path.split('public/').pop()) : encodeURI(req.body.image),
-    }
+      }
 
     currentDataObj.attachPicture(input, (err) => {
 
