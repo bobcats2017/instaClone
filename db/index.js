@@ -1,16 +1,15 @@
-require('dotenv').config()
+require('dotenv').config({path: '../.env'});
 const pg = require('pg');
 
 
 
 const pgObj = new pg.Pool({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'testdb',
-  password: 'G0disg00d1410', //never allow password to be viewed by anyone
-  port: 5432,
+    database: process.env.PGDATABASE,
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    password: process.env.PGPASSWORD, //never allow password to be viewed by anyone
+    port: process.env.PGPORT,
 });
-
 
 /*======*****PG OBJECTS*****===================
 =====================================================*/
