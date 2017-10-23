@@ -28,7 +28,7 @@
                     <!--  need to fix routing -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Upload Image</a>
+                    <a class="nav-link" href="/uploadImage">Upload Image</a>
                     <!--  need to fix routing -->
                 </li>
             </ul>
@@ -40,34 +40,37 @@
         <% articles.forEach(function(post){ %>
             <section class="body-container">
                 <div class="card">
-                <div class="card-header">
-            </div>
-                <div class="profile-info">
-                <div class="profile-name"><%= post.username %></div>
-            </div>
-            <div class="content">  
-            <div> <img src="/file_uploader/image-1504746733795.jpg" class="img-thumbnail" alt="fish">
-            </div>
-           <div class="card-footer"><div class="description">
-             <div class="profile-name"><%= post.username %></div>  
-        <p><span class="username">Description:</span> <%= post.description %></p>
-
-        <div class="comments">
-            <p><span class="username">Comments:</span>Here's place for comments</p>
-            <p> <span class="username">HashTag:</span><%= post.hashtag %></p>
-        </div>
-            <form method="POST" action="/addComment">
-                <div class="form-group">
-                    <label>Add Comment</label>
-                    <textarea class="form-control" placeholder="description" name="description"> </textarea>
+                    <div class="card-header"></div>
+                    <div class="profile-info">
+                    <div class="profile-name"><%= post.username %></div>
                 </div>
-                <input type="hidden" name="user_id" value="1">
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <div class="edit-link"> 
-            <a href="/editPost/:<%= post.post_id %>">EDIT</a>
-            </div>
-        <% }) %>
-    </section>    
-    </div>
+                <div class="content">  
+                    <div> 
+                        <img src="file_uploader\image-1504919088210.jpg" class="img-thumbnail">
+                    </div>
+                <div class="card-footer"><div class="description">
+                    <div class="profile-name"><%= post.username %></div>  
+                    <p>
+                        <span class="username">Description:</span> 
+                        <%= post.description %>
+                    </p>
+
+                <div class="comments">
+                    <p><span class="username">Comments:</span>Here's place for comments</p>
+                    <p> <span class="username">HashTag:</span><%= post.hashtag %></p>
+                </div>
+                <form method="POST" action="/addComment">
+                    <div class="form-group">
+                        <label>Add Comment</label>
+                        <textarea class="form-control" placeholder="description" name="description"> </textarea>
+                    </div>
+                    <input type="hidden" name="user_id" value="1">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <div class="edit-link"> 
+                    <a href="/editPost/<%= post.post_id %>">EDIT</a>
+                </div>
+            </section>
+        <% }) %>    
+</div>
 </html> 

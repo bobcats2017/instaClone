@@ -205,6 +205,7 @@ module.exports.addComment = (req, res) => {
 
 module.exports.showArticles = function(request, response) {
     currentDataObj.getAllArticles(function(err, list) {
+            console.log(list);
         if (err) {
             const message = err.errno === -2 ? defaultMessage : 'Try again later';
 

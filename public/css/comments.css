@@ -1,162 +1,164 @@
-      body {
-        background:#fafafa;
-        position: absolute;
-        width: 100%;
-        top: 50px;
-        bottom: 0;
-    }
-    
-    .nav > li > a {
-        position: relative;
-        display: inline;
-        padding: 10px 15px;
-        font-size: 16px; 
-    }
-    
-    a {
-        box-sizing: border-box;
-        width: 25%;
-        display: inline-block;
-        margin-left: -3px;
-        text-align: center; 
-        padding: 14 px;
-    }
-    
-    
-    a:hover {
-        color:red;
-    }
-    
-     
-    .body-container{
-        background:#fafafa; 
-        padding-bottom: 800px;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 50px;
-        margin-bottom: 300px;
-        margin-top: 0;
-        margin-left: 220px;
-        margin-right: 220px;
-        width: 500px;
-        height: 500px;
-    
-    }
-    
-    .card{
-        background:#fff;
-        margin: 0 auto;
-        width: 500px;
-        border: 1px solid #d1d1d1;
-        border-radius: 12px;
-        float: left;
-    }
-    
-    .description{
-        background: #e5e5e5;
-        margin-left: 0px;
-    }
-    
-    
-    .card-header{
-        padding: 5px;
-    }
-    
-    .profile-info{
-        display: inline-block;
-    }
-    .profile-name{
-        font-size: 20px;
-        color: 111111;
-        font-weight: 700;
-        margin-left: 10px;
-        font-family: 'Open Sans', sans-serif;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    
-    img{
-        width: 100%;
-    }
-     
-    .card-footer{
-        padding: 30px, 10px;
-        box-sizing: border-box;
-    }
-    
-    .description
-        p{
-         font-size: 14px;
-         font-family: 'Open Sans', sans-serif;
-         margin: 12px;
-    }
-    
-    .username{
-          font-family: 'Open Sans', sans-serif;
-          font-weight: 900;
-          padding-right: 5px;
-    }
-    
-    comments.p{
-            font-size: 14px;
-            margin: 0;
-            padding: 0 0 5px 0;
-    }
-    
-    comments.username{
-          font-family: 'Open Sans', sans-serif;
-          font-weight: 700;
-          padding-right: 5px;
-    }
-    
-    input{
-        width: 100%;
-        border: 2px solid #fafafa;
-        border-radius: 4px;
-        margin: 8px 0;
-        outline: none;
-        padding-left: 20px;
-        box-sizing: border-box;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 700;
-    }
-    
-    .inputWithIcon{
-        background:#e5e5e5;
-    }
-    
-    
-    .btn-post{
-        padding: 15px;
-        color: dodgerBlue;
-        border-radius: 5px;
-        float: right;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 900;
-    }
-    
-    label {
-        display: inline-block;
-        max-width: 100%;
-        margin-bottom: 5px;
-        margin-left: 10px;
-        font-weight: bold;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 900;
-    }
+body {
+    background:#fafafa;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    bottom: 0;
+}
+
+.nav > li > a {
+    position: relative;
+    display: inline;
+    padding: 10px 15px;
+    font-size: 16px; 
+}
+
+a {
+    box-sizing: border-box;
+    width: 25%;
+    display: inline-block;
+    margin-left: -3px;
+    text-align: center; 
+    padding: 14 px;
+}
+
+
+a:hover {
+    color:red;
+}
+
+ 
+.body-container{
+    background:#fafafa;
+    /* padding-bottom: 800px; */
+    padding-left: 0px;
+    padding-right: 26px;
+    padding-top: 50px;
+    margin-bottom: 270px;
+    margin-top: 0;
+    /* margin-left: 220px; */
+    /* margin-right: 220px; */
+    width: 47%;
+    /* height: 500px; */
+    margin: 0 auto;
+    /* margin-bottom: 140px; */
+    float:  left;
+}
+
+.card{
+    background:#fff;
+    margin: 0 auto;
+    width: 100%;
+    border: 1px solid #d1d1d1;
+    border-radius: 12px;
+    /* float: left; */
+}
+
+.description{
+    background: #e5e5e5;
+    margin-left: 0px;
+}
+
+
+.card-header{
+    padding: 5px;
+}
+
+.profile-info{
+    display: inline-block;
+}
+.profile-name{
+    font-size: 20px;
+    color: 111111;
+    font-weight: 700;
+    margin-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+img{
+    width: 100%;
+}
+ 
+.card-footer{
+    padding: 30px, 10px;
+    box-sizing: border-box;
+}
+
+.description
+    p{
+     font-size: 14px;
+     font-family: 'Open Sans', sans-serif;
+     margin: 12px;
+}
+
+.username{
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 900;
+      padding-right: 5px;
+}
+
+comments.p{
+        font-size: 14px;
+        margin: 0;
+        padding: 0 0 5px 0;
+}
+
+comments.username{
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      padding-right: 5px;
+}
+
+input{
+    width: 100%;
+    border: 2px solid #fafafa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+.inputWithIcon{
+    background:#e5e5e5;
+}
+
+
+.btn-post{
+    padding: 15px;
+    color: dodgerBlue;
+    border-radius: 5px;
+    float: right;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 900;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 900;
+}
 
 form{
-        background: #e5e5e5;
-    }
+    background: #e5e5e5;
+}
 
-    .edit-link{
-        float: left;
-        float: left;
-        font-size: 14px;
-        color: 111111;
-        font-weight: 900;
-        margin-left: 20px;
-        font-family: 'Open Sans', sans-serif;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
+.edit-link{
+    float: left;
+    float: left;
+    font-size: 14px;
+    color: 111111;
+    font-weight: 900;
+    margin-left: 20px;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
